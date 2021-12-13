@@ -1,9 +1,14 @@
-import React from 'react';
-import './app.css';
+import React from "react";
+import "./app.css";
+import Navbar from "./components/navbar";
+import Videos from "./components/videos";
 
 function App() {
   return (
-   <h1>Hello</h1>
+    <>
+      <Navbar />
+      <Videos />
+    </>
   );
 }
 
