@@ -49,6 +49,10 @@
   width: 600px;
 }
 
+.video-card:hover {
+  cursor: pointer;
+}
+
 .video-description {
   display: flex;
   flex-direction: column;
