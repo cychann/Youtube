@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 
 class Video extends Component {
+  handleVideoClick = () => {
+    this.props.onClickVideo(this.props.video);
+  };
+
   render() {
     const { video } = this.props;
     return (
-      <div className="video-card">
+      <div className="video-card" onClick={this.handleVideoClick}>
         <img
           src={video.snippet.thumbnails.medium.url}
           alt=""
