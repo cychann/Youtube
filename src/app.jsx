@@ -1,15 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import "./app.css";
-import Detail from "./components/detail";
-import Navbar from "./components/navbar";
-import Videos from "./components/videos";
+import VideoList from "./components/video_list/video_list";
 
-class App extends Component {
-  state = {
-    videos: [],
-    videoToPlay: [],
-  };
-  componentDidMount = () => {
+function App() {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -20,48 +16,11 @@ class App extends Component {
       requestOptions
     )
       .then((response) => response.json())
-      .then((data) =>
-        this.setState({
-          videos: data.items,
-        })
-      )
+      .then((result) => setVideos(result.items))
       .catch((error) => console.log("error", error));
-  };
+  }, []);
 
-  handleVideoClick = (video) => {
-    console.log(video);
-  };
-
-  handleSearch = (keyword) => {
-    console.log(keyword);
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${keyword}&key=AIzaSyDAdlftPwJtY1w-EOBKxtqKn06ro0IznH0`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({ videos: data.items });
-      })
-      .catch((error) => console.log("error", error));
-  };
-
-  render() {
-    return (
-      <>
-        <Navbar onSearch={this.handleSearch} />
-        <Videos
-          videos={this.state.videos}
-          onClickVideo={this.handleVideoClick}
-        />
-        {/* <Detail /> */}
-      </>
-    );
-  }
+  return <VideoList videos={videos} />;
 }
 
 export default App;
