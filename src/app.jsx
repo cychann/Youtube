@@ -14,7 +14,7 @@ function App() {
       requestOptions
     )
       .then((response) => response.json())
-      .then((result) => result.items)
+      .then((result) => setVideos(result.items))
       .catch((error) => console.log("error", error));
   }, []);
   return <VideoList videos={videos} />;

@@ -1,0 +1,21 @@
+.video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+  width: 50%;
+}
+
+.thumbnail {
+  width: 50%;
+}
+
+.title {
+  font-size: 1.1rem;
+}
+
+.video_description {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
